@@ -835,6 +835,7 @@
 
         const startBtn = document.getElementById('startButton');
         const audio = document.getElementById('audio');
+        if (audio) audio.volume = 0.3; // set initial volume to 30%
         const welcomeModal = document.getElementById('welcome-modal');
         const toggleAudioBtn = document.querySelector('.toggleAudio');
         const toggleIcon = toggleAudioBtn?.querySelector('i');
