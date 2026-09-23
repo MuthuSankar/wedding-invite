@@ -516,8 +516,13 @@
                     </div>
 
                     <div class="social-link">
-                        <a href="tel:+919500474802" class="">
-                            <i class="ri-phone-fill">
+                        <a href="https://www.instagram.com/muthusankarv/" class="instagram" target="_blank">
+                                <i class="ri-instagram-fill">
+                            </i>
+                        </a>
+
+                        <a href="https://www.instagram.com/a_bee_tha/" class="instagram" target="_blank">
+                                <i class="ri-instagram-fill">
                             </i>
                         </a>
 
@@ -560,18 +565,6 @@
                         <p class="bride_birthday uk-margin-remove">
                             #beautiful #adorable #outgoing #friendly #kindhearted
                         </p>
-
-                        <div class="social-link">
-                            <a href="tel:+919500474802" class="gr_phone">
-                                <i class="ri-phone-fill">
-                                </i>
-                            </a>
-
-                            <a href="#gift" class="">
-                                <i class="ri-gift-2-fill">
-                                </i>
-                            </a>
-                        </div>
                     </div>
                 </div>
 
@@ -589,18 +582,6 @@
                         <p class="groom_birthday uk-margin-remove">
                             #brilliant #diligent #stoic #thoughtful #introverted
                         </p>
-
-                        <div class="social-link">
-                            <a href="tel:+919500474802" class="gr_phone">
-                                <i class="ri-phone-fill">
-                                </i>
-                            </a>
-
-                            <a href="#gift" class="">
-                                <i class="ri-gift-2-fill">
-                                </i>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -727,12 +708,17 @@
                         </div>
 
                         <div class="social-link">
-                            <a href="tel:+84969619348" class="phone_number">
-                                <i class="ri-phone-fill">
+                            <a href="https://www.instagram.com/muthusankarv/" class="instagram" target="_blank">
+                                    <i class="ri-instagram-fill">
                                 </i>
                             </a>
 
-                            <a href="https://maps.app.goo.gl/FAiS4YMMpGH2QFa5A" class="invi_map" target="_blank">
+                            <a href="https://www.instagram.com/a_bee_tha/" class="instagram" target="_blank">
+                                    <i class="ri-instagram-fill">
+                                </i>
+                            </a>
+
+                            <a href="https://www.google.com/maps/place/Annai+Kalyana+Mandapam/@8.6932902,77.7335085,17z/data=!3m1!4b1!4m6!3m5!1s0x3b04135b222ef7bb:0x3f91f3852afcf1ac!8m2!3d8.6932849!4d77.7360834!16s%2Fg%2F11tnk57jpg?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D" class="invi_map" target="_blank">
                                 <i class='ri-map-2-line'>
                                 </i>
                             </a>
@@ -790,12 +776,17 @@
                         </div>
 
                         <div class="social-link">
-                            <a href="tel:+84349693092" class="phone_number">
-                                <i class="ri-phone-fill">
+                            <a href="https://www.instagram.com/muthusankarv/" class="instagram" target="_blank">
+                                    <i class="ri-instagram-fill">
                                 </i>
                             </a>
 
-                            <a href="https://maps.app.goo.gl/EqYV4c79Vm1exFtD8" class="invi_map" target="_blank">
+                            <a href="https://www.instagram.com/a_bee_tha/" class="instagram" target="_blank">
+                                    <i class="ri-instagram-fill">
+                                </i>
+                            </a>
+
+                            <a href="https://www.google.com/maps/place/Annai+Kalyana+Mandapam/@8.6932902,77.7335085,17z/data=!3m1!4b1!4m6!3m5!1s0x3b04135b222ef7bb:0x3f91f3852afcf1ac!8m2!3d8.6932849!4d77.7360834!16s%2Fg%2F11tnk57jpg?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D" class="invi_map" target="_blank">
                                 <i class='ri-map-2-line'>
                                 </i>
                             </a>
@@ -829,7 +820,8 @@
     <!-- END THANK YOU -->
 
     <!-- AUDIO -->
-    <audio src="https://s3.ap-southeast-1.amazonaws.com/tynab.wedding/audio/ido.mp3" controls loop id="audio">
+    <audio src="wp-content/mp3/perfected.mp3" controls loop id="audio" type="audio/mp3" style="display: none;">
+        Your browser does not support the audio element.
     </audio>
 
     <button class='toggleAudio'>
@@ -846,6 +838,27 @@
         const welcomeModal = document.getElementById('welcome-modal');
         const toggleAudioBtn = document.querySelector('.toggleAudio');
         const toggleIcon = toggleAudioBtn?.querySelector('i');
+
+        // Toggle audio: if playing -> stop and reset; if stopped -> start from beginning
+        if (toggleAudioBtn) {
+            toggleAudioBtn.addEventListener('click', () => {
+                if (!audio) return;
+
+                // If audio is currently playing, pause and reset to start
+                if (!audio.paused && !audio.ended) {
+                    audio.pause();
+                    try { audio.currentTime = 0; } catch (e) { /* some browsers may block setting currentTime */ }
+                    toggleIcon?.classList.add('ri-volume-mute-fill');
+                    toggleIcon?.classList.remove('ri-volume-up-fill');
+                } else {
+                    // Otherwise start playback from the beginning
+                    try { audio.currentTime = 0; } catch (e) { }
+                    audio.play().catch(() => { /* autoplay may be blocked */ });
+                    toggleIcon?.classList.remove('ri-volume-mute-fill');
+                    toggleIcon?.classList.add('ri-volume-up-fill');
+                }
+            });
+        }
 
         window.addEventListener('load', () => window.scrollTo(0, 0));
 
